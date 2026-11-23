@@ -1,0 +1,179 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "WOWII Conjecture 399b is false (a 12-vertex counterexample)"
+  description: >-
+    Conjecture 399b of DeLaViña's Written on the Wall II (Graffiti.pc) says that every
+    connected graph G on n > 2 vertices satisfies γ₂(G) ≤ WP(Ḡ) + ⌊3/α(G[A₃])⌋, where γ₂ is
+    the 2-domination number, WP(Ḡ) the Welsh–Powell invariant of the complement (the
+    largest k with k + d_k ≤ n, the degrees of G taken in nondecreasing order) and A₃ the
+    set of vertices of degree at least three. The package proves the negation, for
+    connected graphs on more than two vertices whose set A₃ is nonempty, with a connected
+    graph F₃ on 12 vertices (graph6 KCOfFFb?~?[?) that has γ₂ = 7, WP(Ḡ) = 6 and
+    α(G[A₃]) = 4, so that 7 > 6 = 6 + ⌊3/4⌋.
+  authors:
+    - "Jiří Chmel"
+  responsible_maintainers:
+    - "Jiří Chmel"
+  license: "Apache-2.0"
+
+classification:
+  arxiv:
+    - "math.CO"
+  msc2020:
+    - "05C69"
+    - "05C07"
+    - "05C15"
+
+sources:
+  - title: "A counterexample to Conjecture 399b of Written on the Wall II (preprint, version 1)"
+    authors:
+      - "Jiří Chmel"
+    id: "https://github.com/jirichmel/wowii-399b-counterexample/tree/8b450009c511d999d33746b3b87bb50fc489b731"
+    type: "paper"
+    location: "The main theorem (the graphs F_q, q ≥ 3), in the case q = 3"
+    relationship: "formalizes"
+    author_endorsement: "participated"
+    note: >-
+      Preprint posted on 22 November 2026 (version 1, at the commit above). It gives the
+      family F_q (q ≥ 3) with a hand proof; this package formalizes its smallest member F₃,
+      which suffices to refute the conjecture. The preprint's author is the author of this
+      package. The preprint itself says that it was posted before its author's own full
+      review and that it has had no external peer review.
+  - title: "Written on the Wall II (Conjectures of Graffiti.pc)"
+    authors:
+      - "Ermelinda DeLaViña"
+    id: "http://cms.dt.uh.edu/faculty/delavinae/research/wowII/"
+    type: "web discussion"
+    location: "Conjecture 399b; definitions 90 (2-domination number) and 113 (Welsh-Powell of the complement of G)"
+    relationship: "background"
+    author_endorsement: "not-contacted"
+    note: >-
+      States the conjecture. In the latest states of the catalogue that the preprint could
+      see (an Internet Archive capture of 26 July 2026 and a copy of its rows of
+      1 September 2026), the entry is marked open. The catalogue's author has not been
+      contacted.
+
+related_formalizations:
+  - title: "Lean supplement of the preprint (supplement/lean, library LeanWowii)"
+    authors:
+      - "Jiří Chmel"
+    id: "https://github.com/jirichmel/wowii-399b-counterexample/tree/8b450009c511d999d33746b3b87bb50fc489b731/supplement/lean"
+    relationship: "builds-on"
+    note: >-
+      The Solution copies verbatim the parts of LeanWowii/W213/Defs.lean,
+      LeanWowii/W213/Audit.lean, LeanWowii/W399b/Defs.lean and
+      LeanWowii/W399b/Counterexample.lean that the proof uses, with every name moved under
+      the prefix Palomar399b, because those files do not use Lean's module system. The
+      supplement uses the same Lean toolchain and Mathlib commit. Bridge lemmas in the
+      Solution prove that the Challenge's definitions agree with the supplement's.
+  - title: "google-deepmind/formal-conjectures pull request #7320 (WOWII Conjecture 396)"
+    id: "https://github.com/google-deepmind/formal-conjectures/pull/7320"
+    relationship: "builds-on"
+    note: >-
+      The Challenge copies IsTwoDominating and twoDominationNumber verbatim from this open
+      pull request, at its head commit adb67e65958b.
+
+status:
+  scope: >-
+    The selected theorem is WrittenOnTheWallII.GraphConjecture399b.conjecture399b, the
+    negation of Conjecture 399b for connected graphs on more than two vertices whose set A₃
+    is nonempty. With A₃ empty the source's right side 3/0 is undefined; the extra
+    hypothesis only weakens the conjecture, so its negation is the stronger claim. The
+    Solution proves it with F₃ alone. The Challenge's definitions and statement are those
+    of a Formal Conjectures file (FormalConjectures/WrittenOnTheWallII/GraphConjecture399b.lean)
+    written for a later pull request to google-deepmind/formal-conjectures, less its
+    attributes and sanity checks; that file is not public yet. The family F_q of the
+    preprint and its computer searches are not formalized in this package.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - "propext"
+    - "Classical.choice"
+    - "Quot.sound"
+  main_results:
+    - declaration: "WrittenOnTheWallII.GraphConjecture399b.conjecture399b"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms:
+        - "propext"
+        - "Classical.choice"
+        - "Quot.sound"
+      comparator_config: "comparator.json"
+
+automation:
+  methods:
+    - method: "agent"
+      models:
+        - "claude-opus-5-5"
+      framework: "Claude Code"
+      tool_setup: >-
+        The preprint (21 and 22 November 2026): Claude Opus 5.5 agents in Claude Code
+        (Anthropic) scanned the open entries of the catalogue, searched for counterexamples,
+        found the family F_q and its proof, wrote the programs, the Lean supplement and the
+        text, under the direction of Jiří Chmel. The graph generator of one search program
+        comes from a library written in the same project on 19 November 2026 by Claude
+        Fable 5.2, another Anthropic model. Further Claude agents, writing programs of their
+        own, refereed the proof, recomputed the invariants, repeated the searches and
+        audited the formal proof.
+    - method: "agent"
+      models:
+        - "claude-opus-5-5"
+      framework: "Claude Code"
+      tool_setup: >-
+        This package (23 November 2026): Claude Opus 5.5 agents in Claude Code wrote the
+        Formal Conjectures statement, cut the Challenge from it, copied the proof from the
+        preprint's Lean supplement into a Solution that uses the module system, wrote the
+        bridge lemmas and this metadata, under the direction of Jiří Chmel.
+  notes: >-
+    AI assistance was material throughout: the counterexample search, the proofs, the
+    paper and the Lean formalization were produced by Claude Opus 5.5 agents in Claude Code
+    (Anthropic). Jiří Chmel directed the work (chose the problems and the lines of work, set the working
+    rules, and decided what to write up and publish), is the human author and maintainer,
+    and takes responsibility for the work. No AI system is listed as an author.
+
+fidelity:
+  divergences: >-
+    (1) The hypothesis that A₃ is nonempty is added: when A₃ is empty, α(G[A₃]) = 0 and the
+    source's right side ⌊3/0⌋ is undefined; see status.scope. (2) Definition 90 says that a
+    vertex outside a 2-dominating set D is "adjacent to 2 vertices" of D; this is read as at
+    least two, the standard meaning (IsTwoDominating). (3) Definition 113 does not say whose
+    degree sequence is meant; the Challenge uses the degrees of G, as the definition reads.
+    With the degrees of the complement, F₃ is still a counterexample: the Solution proves
+    that the same formula applied to the complement of F₃ also gives 6
+    (welshPowellComplement_compl_F3). (4) The floor ⌊3/α⌋ is division of natural numbers.
+    (5) α(G[A₃]) is Mathlib's independence number of the subgraph induced by A₃.
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "Claude Opus 5.5 agents in Claude Code, separate from the agents that wrote the work"
+  notes: >-
+    Checks so far. The Lean kernel accepts the proof (Lean v4.37.0-rc1, Mathlib 31ce06ea),
+    and #print axioms of the selected theorem shows only propext, Classical.choice and
+    Quot.sound. One translation review by an AI agent, with programs of its own and
+    negative controls, checked the translation of the catalogue's statement into the
+    Challenge. Before that, the preprint's hand proof was refereed by
+    Claude agents writing programs of their own, which also recomputed the invariants,
+    repeated the searches and audited the preprint's formal proof. No human referee has
+    reviewed the preprint or this package yet, and there has been no external peer review.
+
+alignment:
+  namespace: "WrittenOnTheWallII.GraphConjecture399b"
+  statements:
+    - source: >-
+        Written on the Wall II, Conjecture 399b: if G is a connected graph on n > 2
+        vertices, then γ₂ ≤ WP(Ḡ) + ⌊3/α(G[A₃])⌋, where A₃ is the set of vertices of degree
+        at least three. The package proves that this is false.
+      lean: "WrittenOnTheWallII.GraphConjecture399b.conjecture399b"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        The negation of the statement, for connected graphs on more than two vertices with
+        A₃ nonempty; see fidelity.divergences. The bridge lemmas in Solution.lean show that
+        the Challenge's definitions agree with those of the preprint's Lean supplement.
+
+acknowledgements: >-
+  Mathlib. IsTwoDominating and twoDominationNumber come from Formal Conjectures pull
+  request #7320.
