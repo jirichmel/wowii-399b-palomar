@@ -66,7 +66,8 @@ related_formalizations:
       LeanWowii/W213/Audit.lean, LeanWowii/W399b/Defs.lean and
       LeanWowii/W399b/Counterexample.lean that the proof uses, with every name moved under
       the prefix Palomar399b, because those files do not use Lean's module system. The
-      supplement uses the same Lean toolchain and Mathlib commit. Bridge lemmas in the
+      supplement was built with a later Lean release candidate and Mathlib commit; the
+      copied parts build unchanged on this package's Lean v4.35.0 and Mathlib v4.35.0. Bridge lemmas in the
       Solution prove that the Challenge's definitions agree with the supplement's.
   - title: "google-deepmind/formal-conjectures pull request #7320 (WOWII Conjecture 396)"
     id: "https://github.com/google-deepmind/formal-conjectures/pull/7320"
@@ -150,7 +151,7 @@ review:
   reviewers:
     - "Claude Opus 5.5 agents in Claude Code, separate from the agents that wrote the work"
   notes: >-
-    Checks so far. The Lean kernel accepts the proof (Lean v4.37.0-rc1, Mathlib 31ce06ea),
+    Checks so far. The Lean kernel accepts the proof (Lean v4.35.0, Mathlib v4.35.0 at commit 56a005855ea1),
     and #print axioms of the selected theorem shows only propext, Classical.choice and
     Quot.sound. One translation review by an AI agent, with programs of its own and
     negative controls, checked the translation of the catalogue's statement into the

@@ -33,8 +33,8 @@ on 12 vertices, graph6 `KCOfFFb?~?[?`, with γ₂ = 7, WP(Ḡ) = 6 and α(G[A₃
 
 ## Building
 
-The toolchain is Lean `v4.37.0-rc1` (`lean-toolchain`) and Mathlib is pinned at commit
-`31ce06eaadf4a200c0e1407c5f10953cf606b8f8` (`lake-manifest.json`). With
+The toolchain is Lean `v4.35.0` (`lean-toolchain`) and Mathlib is pinned at its tag `v4.35.0`, commit
+`56a005855ea17e0b0958f73ec801ae140b0a1679` (`lakefile.toml`, `lake-manifest.json`). With
 [elan](https://github.com/leanprover/elan) installed:
 
     lake exe cache get
